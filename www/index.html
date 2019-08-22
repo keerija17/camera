@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Camera</title>
+    </head>
+    <body>
+        <script type="text/javascript" src="cordova.js"></script>
+		<button id = "cameraTakePicture">TAKE PICTURE</button>
+<img id = "myImage"></img>
+<script>
+ function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    function onDeviceReady() {
+        alert("Device is Ready");
+        document.getElementById("cameraTakePicture").addEventListener 
+   ("click", cameraTakePicture); 
+    }
+
+
+   function cameraTakePicture() { 
+   navigator.camera.getPicture(onSuccess, onFail, {  
+      quality: 50, 
+      destinationType: Camera.DestinationType.DATA_URL 
+   });  
+   
+   function onSuccess(imageData) { 
+      var image = document.getElementById('myImage'); 
+      image.src = "data:image/jpeg;base64," + imageData; 
+   }  
+   
+   function onFail(message) { 
+      alert('Failed because: ' + message); 
+   } 
+}
+</script>
+    </body>
+</html>
